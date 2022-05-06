@@ -178,6 +178,7 @@ main{
 .task-icons {
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 
 .project-notes{
