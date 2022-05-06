@@ -7,7 +7,7 @@ export default function editProjectModal() {
 
     const editProjectFormTitle = document.createElement('div');
     editProjectFormTitle.classList.add('form-title');
-    editProjectFormTitle.innerHTML = '<h2>Edit project</h2>';
+    editProjectFormTitle.innerHTML = '<h2>Edit selected project</h2>';
     editProjectForm.appendChild(editProjectFormTitle);
 
     const editProjectInputGroup1 = document.createElement('div');
@@ -46,11 +46,13 @@ export default function editProjectModal() {
     const addProjectBtn = document.createElement('button');
     addProjectBtn.classList.add('add-project-btn');
     addProjectBtn.innerHTML = 'Save';
+    addProjectBtn.id='save-project-btn';
     editProjectBtnGroup.appendChild(addProjectBtn);
 
     const cancelProjectBtn = document.createElement('button');
     cancelProjectBtn.classList.add('cancel-btn');
     cancelProjectBtn.innerHTML = 'Cancel';
+    cancelProjectBtn.id='cancel-edit-btn';
 
     editProjectBtnGroup.appendChild(cancelProjectBtn);
     editProjectForm.appendChild(editProjectBtnGroup);

@@ -46,10 +46,13 @@ export default function newProjectModal() {
     const addProjectBtn = document.createElement('button');
     addProjectBtn.classList.add('add-project-btn');
     addProjectBtn.innerHTML = 'Add project';
+    addProjectBtn.id='add-project-btn';
+    addProjectBtn.disabled = true;
     newProjectBtnGroup.appendChild(addProjectBtn);
 
     const cancelProjectBtn = document.createElement('button');
     cancelProjectBtn.classList.add('cancel-btn');
+    cancelProjectBtn.id='cancel-add-btn';
     cancelProjectBtn.innerHTML = 'Cancel';
 
     newProjectBtnGroup.appendChild(cancelProjectBtn);
