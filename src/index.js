@@ -1,4 +1,4 @@
-import printMe from './print.js';
+import sidebar from './sidebar.js';
 
 function component() {
     const element = document.createElement('div');

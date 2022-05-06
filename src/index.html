@@ -15,6 +15,11 @@
             <div class="sidebar-header">
                 <h1>To do list</h1>
             </div>
+            <ul class="project-list">
+                <li>
+                    <p class="project-link">Home</p>
+                </li>
+            </ul>
 
             <h2 class="sidebar-list-title">Projects</h2>
             <ul class="project-list">
@@ -273,8 +278,28 @@
                     <input type="text" name="new-project-desc" id="new-project-desc" placeholder="description of new project">
                 </div>
                 <div class="form-buttons">
-                    <button class="add-project-btn">add project</button>
-                    <button class="cancel-btn">cancel</button>
+                    <button class="add-project-btn" id="add-project-btn">add project</button>
+                    <button class="cancel-btn" id="cancel-add-project">cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="edit-project">
+            <div class="edit-project-form">
+                <div class="form-title">
+                    <h2>Edit project</h2>
+                </div>
+                <div class="input-group">
+                    <label for="edit-project-name">Project name:</label>
+                    <input type="text" name="edit-project-name" id="edit-project-name" placeholder="">
+                </div>
+                <div class="input-group">
+                    <label for="edit-project-desc">Project description: </label>
+                    <input type="text" name="edit-project-desc" id="edit-project-desc" placeholder="">
+                </div>
+                <div class="form-buttons">
+                    <button class="add-project-btn" id="save-project-edit">save</button>
+                    <button class="cancel-btn" id="cancel-project-edit">cancel</button>
                 </div>
             </div>
         </div>

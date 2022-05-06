@@ -47,7 +47,7 @@ ul{
 }
 
 .project-list{
-    margin-top: 0;
+    margin-block: 0;
     margin-inline: 3rem;
     display: flex;
     flex-direction: column;
@@ -322,7 +322,8 @@ main{
 }
 
 
-.new-project{
+.new-project,
+.edit-project{
     position: absolute;
     top: 0;
     left: 0;
@@ -332,9 +333,13 @@ main{
     z-index: 10;
     display: grid;
     place-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-out;
 }
 
-.new-project-form{
+.new-project-form,
+.edit-project-form{
     background-color: whitesmoke;
     padding: 2rem;
     border-radius: 2rem;
@@ -342,6 +347,9 @@ main{
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    min-width: 274px;
+    width: 33vw;
+    max-width: 524px;
 }
 
 .form-title h2{
@@ -370,27 +378,35 @@ main{
 }
 
 .add-project-btn{
-    background-color: #20c997;
+    background-color: #0275d8;
+    color: whitesmoke;
 }
 
 .add-project-btn:hover{
-    background-color: #1a9c75;
+    background-color: #005cac;
 }
 
 .add-project-btn:active{
-    background-color: #157a5c;
-    color: whitesmoke;
+    background-color: #0055a0;
 }
 
 .cancel-btn{
-    background-color: #f13e50 ;
+    background-color: #ec3a4c  ;
 }
 
 .cancel-btn:hover{
-    background-color: #d63031;
+    background-color: #c93040 ;
 }
 
 .cancel-btn:active{
-    background-color: #c41f2d;
+    background-color: #ac2b38;
     color: whitesmoke;
+}
+
+.input-group input {
+    border:none;
+    border-radius: 1rem;
+    padding: 0.6rem 1.2rem;
+    box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
+    margin-top: 0.5rem;
 }
