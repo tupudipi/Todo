@@ -55,10 +55,31 @@ ul{
     font-size: 1.3rem;
 }
 
+.project-list>li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
 .project-link{
+    margin: 0;
+    flex-grow: 1;
     padding: 0.5rem;
     transition: all 0.2s ease-out;
     border-radius: 1rem;
+}
+
+.project-list .icon{
+    color: whitesmoke;
+}
+
+.project-list .icon:hover{
+    color: whitesmoke;
+}
+
+.project-list .icon:active{
+    color: white;
 }
 
 .project-link:hover{
@@ -122,14 +143,36 @@ main{
     width: 100%;
 }
 
-.task,
-.note{
+.task{
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px dashed rgba(0,0,0,0.3);
     width: 100%;
+}
+
+.task-head{
+    display: flex;
+    align-items: center;
+}
+
+.task-checkbox{
+    transform: scale(1.2);
+    margin: 0.5rem;
+}
+
+.note{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px dashed rgba(0,0,0,0.3);
+    gap: 0.5rem;
+}
+
+.note-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .task-icons {
@@ -163,7 +206,9 @@ main{
 .new-project-btn,
 .edit-project-btn,
 .add-task-btn,
-.add-note-btn{
+.add-note-btn,
+.add-project-btn,
+.cancel-btn{
     background: none;
 	color: inherit;
 	border: none;
@@ -180,14 +225,18 @@ main{
 .new-project-btn:hover,
 .edit-project-btn:hover,
 .add-task-btn:hover,
-.add-note-btn:hover{
+.add-note-btn:hover,
+.add-project-btn:hover,
+.cancel-btn:hover{
     box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
 }
 
 .new-project-btn:active,
 .edit-project-btn:active,
 .add-task-btn:active,
-.add-note-btn:active{
+.add-note-btn:active,
+.add-project-btn:active,
+.cancel-btn:active{
     transition: all 0.1s ease-out;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
 }
@@ -252,4 +301,96 @@ main{
 
 .add-note-btn:active{
     background-color: #0ab0d7;
+}
+
+.icon{
+    color: rgba(0,0,0,0.75);
+    transform: scale(1.2);
+    transition: all 0.1s ease-out;
+}
+
+.icon:hover{
+    cursor: pointer;
+    transform: scale(1.4);
+    color: rgba(0,0,0,0.875);
+}
+
+.icon:active{
+    cursor: pointer;
+    transform: scale(1.1);
+    color: rgb(0,0,0);
+}
+
+
+.new-project{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+    display: grid;
+    place-content: center;
+}
+
+.new-project-form{
+    background-color: whitesmoke;
+    padding: 2rem;
+    border-radius: 2rem;
+    border: 2px solid #0275d8;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-title h2{
+    color: rgba(0,0,0,0.85);
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px solid #0275d8;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.add-project-btn,
+.cancel-btn{
+    padding: 0.8rem 1.6rem;
+    font-weight: 600;
+}
+
+.add-project-btn{
+    background-color: #20c997;
+}
+
+.add-project-btn:hover{
+    background-color: #1a9c75;
+}
+
+.add-project-btn:active{
+    background-color: #157a5c;
+    color: whitesmoke;
+}
+
+.cancel-btn{
+    background-color: #f13e50 ;
+}
+
+.cancel-btn:hover{
+    background-color: #d63031;
+}
+
+.cancel-btn:active{
+    background-color: #c41f2d;
+    color: whitesmoke;
 }
