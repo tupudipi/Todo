@@ -209,7 +209,8 @@ main{
 .add-task-btn,
 .add-note-btn,
 .add-project-btn,
-.cancel-btn{
+.cancel-btn,
+#add-task-button{
     background: none;
 	color: inherit;
 	border: none;
@@ -228,7 +229,8 @@ main{
 .add-task-btn:hover,
 .add-note-btn:hover,
 .add-project-btn:hover,
-.cancel-btn:hover{
+.cancel-btn:hover,
+#add-task-button:hover{
     box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
 }
 
@@ -237,7 +239,8 @@ main{
 .add-task-btn:active,
 .add-note-btn:active,
 .add-project-btn:active,
-.cancel-btn:active{
+.cancel-btn:active,
+#add-task-button:active{
     transition: all 0.1s ease-out;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
 }
@@ -324,7 +327,8 @@ main{
 
 
 .new-project,
-.edit-project{
+.edit-project,
+.new-task-modal{
     position: absolute;
     top: 0;
     left: 0;
@@ -340,7 +344,9 @@ main{
 }
 
 .new-project-form,
-.edit-project-form{
+.edit-project-form,
+.new-task-form,
+.new-note-form{
     background-color: whitesmoke;
     padding: 2rem;
     border-radius: 2rem;
@@ -378,16 +384,24 @@ main{
     font-weight: 600;
 }
 
-.add-project-btn{
+#add-task-button{
+    padding: 0.8rem 1.6rem;
+    font-weight: 600;
+}
+
+.add-project-btn,
+#add-task-button{
     background-color: #0275d8;
     color: whitesmoke;
 }
 
-.add-project-btn:hover{
+.add-project-btn:hover,
+#add-task-button:hover{
     background-color: #005cac;
 }
 
-.add-project-btn:active{
+.add-project-btn:active,
+#add-task-button:active{
     background-color: #0055a0;
 }
 

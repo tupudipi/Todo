@@ -3,6 +3,8 @@ import main from './main.js';
 import './styles/global.css';
 import newProjectModal from './newProjectModal.js';
 import editProjectModal from './editProjectModal.js';
+import newTaskModal from './newTaskModal.js';
+import newNoteModal from './newNoteModal.js';
 
 function content() {
     const content = document.createElement('div');
@@ -11,6 +13,8 @@ function content() {
     content.appendChild(main());
     content.appendChild(newProjectModal());
     content.appendChild(editProjectModal());
+    content.appendChild(newTaskModal());
+    // content.appendChild(newNoteModal());
 
     return content;
 }
@@ -30,6 +34,20 @@ const cancelEditProjectBtn = document.querySelector('#cancel-edit-btn');
 const saveProjectBtn = document.querySelector('#save-project-btn');
 const editProjectName = document.querySelector('#edit-project-name');
 const editProjectDescription = document.querySelector('#edit-project-description');
+
+const newTaskBtn = document.querySelector('.add-task-btn');
+const newTaskMenu = document.querySelector('.new-task-modal');
+const addTaskBtn = document.querySelector('#add-task-button');
+const cancelTaskBtn = document.querySelector('#cancel-task-button');
+const newTaskName = document.querySelector('#new-task-name');
+const newTaskDueDate = document.querySelector('#new-task-due-date');
+
+const newNoteBtn = document.querySelector('.add-note-btn');
+const newNoteMenu = document.querySelector('.new-note-modal');
+const addNoteBtn = document.querySelector('#add-note-button');
+const cancelNoteBtn = document.querySelector('#cancel-note-button');
+const newNote = document.querySelector('#new-note');
+
 
 function closeModal(modal) {
     modal.style.opacity = 0;
@@ -70,6 +88,23 @@ function validateProjectEdit() {
         saveProjectBtn.disabled = true;
     }
 }
+
+function validateNewTask() {
+    if (newTaskName.value) {
+        addTaskBtn.disabled = false;
+    } else {
+        addTaskBtn.disabled = true;
+    }
+}
+
+function validateNewNote() {
+    if (newNote.value) {
+        addNoteBtn.disabled = false;
+    } else {
+        addNoteBtn.disabled = true;
+    }
+}
+
 
 newProjectName.addEventListener('keyup', () => {
     validateNewProject();
@@ -118,6 +153,27 @@ saveProjectBtn.addEventListener('click', () => {
     closeModal(editProjectMenu);
 });
 
+
+newTaskName.addEventListener('keyup', () => {
+    validateNewTask();
+});
+
+newTaskBtn.addEventListener('click', () => {
+    openModal(newTaskMenu);
+    validateNewTask();
+});
+cancelTaskBtn.addEventListener('click', () => {
+    newTaskName.value = '';
+    newTaskDueDate.value = '';
+    closeModal(newTaskMenu);
+});
+addTaskBtn.addEventListener('click', () => {
+    console.log(newTaskName.value);
+    console.log(newTaskDueDate.value);
+    newTaskName.value = '';
+    newTaskDueDate.value = '';
+    closeModal(newTaskMenu);
+}); 
 
 
 

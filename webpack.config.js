@@ -12,6 +12,8 @@ module.exports = {
         newProjectModal: './src/newProjectModal.js',
         editProjectModal: './src/editProjectModal.js',
         main: './src/main.js',
+        newTaskModal: './src/newTaskModal.js',
+        editTaskModal: './src/editTaskModal.js',
     },
     output: {
         filename: '[name].bundle.js',
