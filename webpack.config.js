@@ -5,15 +5,15 @@ module.exports = {
     mode: 'development',
     entry: {
         index: './src/index.js',
+        main: './src/main.js',
         sidebar: './src/sidebar.js',
         projectDetails: './src/projectDetails.js',
         projectNotes: './src/projectNotes.js',
         projectTasks: './src/projectTasks.js',
         newProjectModal: './src/newProjectModal.js',
         editProjectModal: './src/editProjectModal.js',
-        main: './src/main.js',
         newTaskModal: './src/newTaskModal.js',
-        editTaskModal: './src/editTaskModal.js',
+        newNoteModal: './src/newNoteModal.js',
     },
     output: {
         filename: '[name].bundle.js',
