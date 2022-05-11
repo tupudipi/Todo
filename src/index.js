@@ -50,45 +50,48 @@ const cancelNewProjectBtn = document.querySelector('#cancel-add-btn');
 const newProjectName = document.querySelector('#new-project-name');
 const newProjectDescription = document.querySelector('#new-project-description');
 
-if (currentProject.name !== 'Home') {
-    const editProjectBtn = document.querySelector('.edit-project-btn');
-    const editProjectMenu = document.querySelector('.edit-project');
-    const cancelEditProjectBtn = document.querySelector('#cancel-edit-btn');
-    const saveProjectBtn = document.querySelector('#save-project-btn');
-    const editProjectName = document.querySelector('#edit-project-name');
-    const editProjectDescription = document.querySelector('#edit-project-description');
+//function that checks when currentProject is changed
+currentProject.addEventListener('change', () => {
+    if (currentProject.name !== 'Home') {
+        const editProjectBtn = document.querySelector('.edit-project-btn');
+        const editProjectMenu = document.querySelector('.edit-project');
+        const cancelEditProjectBtn = document.querySelector('#cancel-edit-btn');
+        const saveProjectBtn = document.querySelector('#save-project-btn');
+        const editProjectName = document.querySelector('#edit-project-name');
+        const editProjectDescription = document.querySelector('#edit-project-description');
 
-    function validateProjectEdit() {
-        if (editProjectName.value.length > 0 && editProjectDescription.value.length > 0) {
-            saveProjectBtn.disabled = false;
-        } else {
-            saveProjectBtn.disabled = true;
+        function validateProjectEdit() {
+            if (editProjectName.value.length > 0 && editProjectDescription.value.length > 0) {
+                saveProjectBtn.disabled = false;
+            } else {
+                saveProjectBtn.disabled = true;
+            }
         }
-    }
 
-    editProjectName.addEventListener('keyup', () => {
-        validateProjectEdit();
-    });
-    editProjectDescription.addEventListener('keyup', () => {
-        validateProjectEdit();
-    });
-    editProjectBtn.addEventListener('click', () => {
-        openModal(editProjectMenu);
-        validateProjectEdit();
-    });
-    cancelEditProjectBtn.addEventListener('click', () => {
-        editProjectName.value = '';
-        editProjectDescription.value = '';
-        closeModal(editProjectMenu);
-    });
-    saveProjectBtn.addEventListener('click', () => {
-        console.log(editProjectName.value);
-        console.log(editProjectDescription.value);
-        editProjectName.value = '';
-        editProjectDescription.value = '';
-        closeModal(editProjectMenu);
-    });
-}
+        editProjectName.addEventListener('keyup', () => {
+            validateProjectEdit();
+        });
+        editProjectDescription.addEventListener('keyup', () => {
+            validateProjectEdit();
+        });
+        editProjectBtn.addEventListener('click', () => {
+            openModal(editProjectMenu);
+            validateProjectEdit();
+        });
+        cancelEditProjectBtn.addEventListener('click', () => {
+            editProjectName.value = '';
+            editProjectDescription.value = '';
+            closeModal(editProjectMenu);
+        });
+        saveProjectBtn.addEventListener('click', () => {
+            console.log(editProjectName.value);
+            console.log(editProjectDescription.value);
+            editProjectName.value = '';
+            editProjectDescription.value = '';
+            closeModal(editProjectMenu);
+        });
+    }
+});
 
 
 const newTaskBtn = document.querySelector('.add-task-btn');
