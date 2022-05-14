@@ -18,6 +18,7 @@ export function getProjects() {
 
 (function () {
     const homeProject = {
+        id: 0,
         name: 'Home',
         description: "This is your Home project, which can't be deleted or edited. You can add uncategorized tasks and notes here."
     }
@@ -25,7 +26,7 @@ export function getProjects() {
 })();
 
 //find the project with the name 'Home'
-const currentProject = getProjects().find((project) => project.name === 'Home');
+let currentProject = getProjects().find((project) => project.name === 'Home');
 
 function content() {
     const content = document.createElement('div');
@@ -50,50 +51,6 @@ const cancelNewProjectBtn = document.querySelector('#cancel-add-btn');
 const newProjectName = document.querySelector('#new-project-name');
 const newProjectDescription = document.querySelector('#new-project-description');
 
-//function that checks when currentProject is changed
-currentProject.addEventListener('change', () => {
-    if (currentProject.name !== 'Home') {
-        const editProjectBtn = document.querySelector('.edit-project-btn');
-        const editProjectMenu = document.querySelector('.edit-project');
-        const cancelEditProjectBtn = document.querySelector('#cancel-edit-btn');
-        const saveProjectBtn = document.querySelector('#save-project-btn');
-        const editProjectName = document.querySelector('#edit-project-name');
-        const editProjectDescription = document.querySelector('#edit-project-description');
-
-        function validateProjectEdit() {
-            if (editProjectName.value.length > 0 && editProjectDescription.value.length > 0) {
-                saveProjectBtn.disabled = false;
-            } else {
-                saveProjectBtn.disabled = true;
-            }
-        }
-
-        editProjectName.addEventListener('keyup', () => {
-            validateProjectEdit();
-        });
-        editProjectDescription.addEventListener('keyup', () => {
-            validateProjectEdit();
-        });
-        editProjectBtn.addEventListener('click', () => {
-            openModal(editProjectMenu);
-            validateProjectEdit();
-        });
-        cancelEditProjectBtn.addEventListener('click', () => {
-            editProjectName.value = '';
-            editProjectDescription.value = '';
-            closeModal(editProjectMenu);
-        });
-        saveProjectBtn.addEventListener('click', () => {
-            console.log(editProjectName.value);
-            console.log(editProjectDescription.value);
-            editProjectName.value = '';
-            editProjectDescription.value = '';
-            closeModal(editProjectMenu);
-        });
-    }
-});
-
-
 const newTaskBtn = document.querySelector('.add-task-btn');
 const newTaskMenu = document.querySelector('.new-task-modal');
 const addTaskBtn = document.querySelector('#add-task-button');
@@ -108,12 +65,12 @@ const cancelNoteBtn = document.querySelector('#cancel-note-button');
 const newNoteText = document.querySelector('#new-note');
 
 
-function closeModal(modal) {
+export function closeModal(modal) {
     modal.style.opacity = 0;
     modal.style.visibility = 'hidden';
 }
 
-function openModal(modal) {
+export function openModal(modal) {
     modal.style.opacity = 1;
     modal.style.visibility = 'visible';
 }
@@ -166,9 +123,9 @@ function validateNewNote() {
     }
 }
 
-//function that adds a new project to local storage
 function addProject() {
     const project = {
+        id: Date.now(),
         name: newProjectName.value,
         description: newProjectDescription.value,
         tasks: [],
