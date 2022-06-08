@@ -78,11 +78,29 @@ export default function projectTasks(currentProject) {
         closeModal(newTaskMenu);
     });
     addTaskBtn.addEventListener('click', () => {
-        console.log(newTaskName.value);
-        console.log(newTaskDueDate.value);
-        console.log(currentProject.id);
-        newTaskName.value = '';
-        newTaskDueDate.value = '';
+        // console.log(newTaskName.value);
+        // console.log(newTaskDueDate.value);
+        // console.log(currentProject.id);
+        // newTaskName.value = '';
+        // newTaskDueDate.value = '';
+
+        const newTask = {
+            title: newTaskName.value,
+            due: newTaskDueDate.value
+        };
+
+        const projects = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const project = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            projects.push(project);
+        }
+        const projectIndex = projects.findIndex((project) => project.id === currentProject.id);
+        projects[projectIndex].tasks.push(newTask);
+        localStorage.clear();
+        for (let i = 0; i < projects.length; i++) {
+            localStorage.setItem(projects[i].name, JSON.stringify(projects[i]));
+        }
+
         closeModal(newTaskMenu);
     });
     function validateNewTask() {

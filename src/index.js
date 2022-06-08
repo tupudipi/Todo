@@ -17,13 +17,49 @@ export function getProjects() {
 }
 
 (function () {
-    const homeProject = {
-        id: 0,
-        name: 'Home',
-        description: "This is your Home project, which can't be deleted or edited. You can add uncategorized tasks and notes here."
-    }
-    localStorage.setItem('Home', JSON.stringify(homeProject));
-})();
+        function checkHome() {
+            const projects = getProjects();
+            if (projects.length === 0) {
+                const homeProject = {
+                id: 0,
+                name: 'Home',
+                description: "This is your Home project, which can't be deleted or edited. You can add uncategorized tasks and notes here.",
+                tasks: [],
+                notes: []
+                };
+                localStorage.setItem('0', JSON.stringify(homeProject));
+            } else {
+                const homeProject = projects.find(project => project.id === 0);
+                if (homeProject === undefined) {
+                    const homeProject = {
+                    id: 0,
+                    name: 'Home',
+                    description: "This is your Home project, which can't be deleted or edited. You can add uncategorized tasks and notes here.",
+                    tasks: [],
+                    notes: []
+                    };
+                localStorage.setItem('0', JSON.stringify(homeProject));
+                } else {
+                    //pull tasks and notes from home project
+                    const homeProject = projects.find(project => project.id === 0);
+                    const tasks = homeProject.tasks;
+                    const notes = homeProject.notes;
+                    //add tasks and notes to home project
+                    for (let i = 0; i < tasks.length; i++) {
+                        const task = tasks[i];
+                        homeProject.tasks.push(task);
+                    }
+                    for (let i = 0; i < notes.length; i++) {
+                        const note = notes[i];
+                        homeProject.notes.push(note);
+                    }
+
+                }
+            }
+
+        }
+    }()
+);
 
 //find the project with the name 'Home'
 let currentProject = getProjects().find((project) => project.name === 'Home');
@@ -42,9 +78,9 @@ function content() {
 
 document.body.appendChild(content());
 
-const contentt=document.getElementById('content');
-    contentt.appendChild(sidebar());
-    contentt.appendChild(main(currentProject));
+const contentt = document.getElementById('content');
+contentt.appendChild(sidebar());
+contentt.appendChild(main(currentProject));
 
 const newProjectBtn = document.querySelector('.new-project-btn');
 const newProjectMenu = document.querySelector('.new-project');
