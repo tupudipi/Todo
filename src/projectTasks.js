@@ -1,3 +1,5 @@
+import { closeModal, openModal } from './index.js';
+
 export default function projectTasks(currentProject) {
     const projectTasks = document.createElement('div');
     projectTasks.classList.add('project-tasks');
@@ -55,5 +57,41 @@ export default function projectTasks(currentProject) {
     newTaskBtn.innerHTML = 'Add Task';
     projectTaskList.appendChild(newTaskBtn);
     projectTasks.appendChild(projectTaskList);
+
+    //const newTaskBtn = document.querySelector('.add-task-btn');
+    const newTaskMenu = document.querySelector('.new-task-modal');
+    const addTaskBtn = document.querySelector('#add-task-button');
+    const cancelTaskBtn = document.querySelector('#cancel-task-button');
+    const newTaskName = document.querySelector('#new-task-name');
+    const newTaskDueDate = document.querySelector('#new-task-due-date');
+    newTaskName.addEventListener('keyup', () => {
+        validateNewTask();
+    });
+
+    newTaskBtn.addEventListener('click', () => {
+        openModal(newTaskMenu);
+        validateNewTask();
+    });
+    cancelTaskBtn.addEventListener('click', () => {
+        newTaskName.value = '';
+        newTaskDueDate.value = '';
+        closeModal(newTaskMenu);
+    });
+    addTaskBtn.addEventListener('click', () => {
+        console.log(newTaskName.value);
+        console.log(newTaskDueDate.value);
+        console.log(currentProject.id);
+        newTaskName.value = '';
+        newTaskDueDate.value = '';
+        closeModal(newTaskMenu);
+    });
+    function validateNewTask() {
+        if (newTaskName.value) {
+            addTaskBtn.disabled = false;
+        } else {
+            addTaskBtn.disabled = true;
+        }
+    }
+
     return projectTasks;
 }

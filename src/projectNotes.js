@@ -1,3 +1,5 @@
+import { closeModal, openModal } from './index.js';
+
 export default function projectNotes(currentProject) {
     const projectNotes = document.createElement('div');
     projectNotes.classList.add('project-notes');
@@ -46,5 +48,35 @@ export default function projectNotes(currentProject) {
     projectNoteList.appendChild(newNoteBtn);
     projectNotesContent.appendChild(projectNoteList);
     projectNotes.appendChild(projectNotesContent);
+
+    //const newNoteBtn = document.querySelector('.add-note-btn');
+    const newNoteMenu = document.querySelector('.new-note-modal');
+    const addNoteBtn = document.querySelector('#add-note-button');
+    const cancelNoteBtn = document.querySelector('#cancel-note-button');
+    const newNoteText = document.querySelector('#new-note');
+    newNoteBtn.addEventListener('click', () => {
+        openModal(newNoteMenu);
+        validateNewNote();
+    });
+    cancelNoteBtn.addEventListener('click', () => {
+        newNoteText.value = '';
+        closeModal(newNoteMenu);
+    });
+    addNoteBtn.addEventListener('click', () => {
+        console.log(newNoteText.value);
+        newNoteText.value = '';
+        closeModal(newNoteMenu);
+    });
+    newNoteText.addEventListener('keyup', () => {
+        validateNewNote();
+    });
+    function validateNewNote() {
+        if (newNoteText.value) {
+            addNoteBtn.disabled = false;
+        } else {
+            addNoteBtn.disabled = true;
+        }
+    }
+
     return projectNotes;
 }

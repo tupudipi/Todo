@@ -31,8 +31,6 @@ let currentProject = getProjects().find((project) => project.name === 'Home');
 function content() {
     const content = document.createElement('div');
     content.id = 'content';
-    content.appendChild(sidebar());
-    content.appendChild(main(currentProject));
 
     content.appendChild(newProjectModal());
     content.appendChild(editProjectModal());
@@ -44,26 +42,16 @@ function content() {
 
 document.body.appendChild(content());
 
+const contentt=document.getElementById('content');
+    contentt.appendChild(sidebar());
+    contentt.appendChild(main(currentProject));
+
 const newProjectBtn = document.querySelector('.new-project-btn');
 const newProjectMenu = document.querySelector('.new-project');
 const addProjectBtn = document.querySelector('#add-project-btn');
 const cancelNewProjectBtn = document.querySelector('#cancel-add-btn');
 const newProjectName = document.querySelector('#new-project-name');
 const newProjectDescription = document.querySelector('#new-project-description');
-
-const newTaskBtn = document.querySelector('.add-task-btn');
-const newTaskMenu = document.querySelector('.new-task-modal');
-const addTaskBtn = document.querySelector('#add-task-button');
-const cancelTaskBtn = document.querySelector('#cancel-task-button');
-const newTaskName = document.querySelector('#new-task-name');
-const newTaskDueDate = document.querySelector('#new-task-due-date');
-
-const newNoteBtn = document.querySelector('.add-note-btn');
-const newNoteMenu = document.querySelector('.new-note-modal');
-const addNoteBtn = document.querySelector('#add-note-button');
-const cancelNoteBtn = document.querySelector('#cancel-note-button');
-const newNoteText = document.querySelector('#new-note');
-
 
 export function closeModal(modal) {
     modal.style.opacity = 0;
@@ -99,30 +87,6 @@ document.addEventListener('click', (e) => {
 });
 
 
-function validateNewProject() {
-    if (newProjectName.value.length > 0 && newProjectDescription.value.length > 0) {
-        addProjectBtn.disabled = false;
-    } else {
-        addProjectBtn.disabled = true;
-    }
-}
-
-function validateNewTask() {
-    if (newTaskName.value) {
-        addTaskBtn.disabled = false;
-    } else {
-        addTaskBtn.disabled = true;
-    }
-}
-
-function validateNewNote() {
-    if (newNoteText.value) {
-        addNoteBtn.disabled = false;
-    } else {
-        addNoteBtn.disabled = true;
-    }
-}
-
 function addProject() {
     const project = {
         id: Date.now(),
@@ -154,45 +118,21 @@ cancelNewProjectBtn.addEventListener('click', () => {
     closeModal(newProjectMenu);
 });
 addProjectBtn.addEventListener('click', addProject);
+function validateNewProject() {
+    if (newProjectName.value.length > 0 && newProjectDescription.value.length > 0) {
+        addProjectBtn.disabled = false;
+    } else {
+        addProjectBtn.disabled = true;
+    }
+}
 
 
-newTaskName.addEventListener('keyup', () => {
-    validateNewTask();
-});
 
-newTaskBtn.addEventListener('click', () => {
-    openModal(newTaskMenu);
-    validateNewTask();
-});
-cancelTaskBtn.addEventListener('click', () => {
-    newTaskName.value = '';
-    newTaskDueDate.value = '';
-    closeModal(newTaskMenu);
-});
-addTaskBtn.addEventListener('click', () => {
-    console.log(newTaskName.value);
-    console.log(newTaskDueDate.value);
-    newTaskName.value = '';
-    newTaskDueDate.value = '';
-    closeModal(newTaskMenu);
-});
 
-newNoteBtn.addEventListener('click', () => {
-    openModal(newNoteMenu);
-    validateNewNote();
-});
-cancelNoteBtn.addEventListener('click', () => {
-    newNoteText.value = '';
-    closeModal(newNoteMenu);
-});
-addNoteBtn.addEventListener('click', () => {
-    console.log(newNoteText.value);
-    newNoteText.value = '';
-    closeModal(newNoteMenu);
-});
-newNoteText.addEventListener('keyup', () => {
-    validateNewNote();
-});
+
+
+
+
 
 
 
