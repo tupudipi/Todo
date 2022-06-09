@@ -1,4 +1,4 @@
-import { closeModal, openModal } from './index.js';
+import { closeModal, getProjects, openModal } from './index.js';
 
 export default function projectTasks(currentProject) {
     const projectTasks = document.createElement('div');
@@ -78,6 +78,7 @@ export default function projectTasks(currentProject) {
         closeModal(newTaskMenu);
     });
     addTaskBtn.addEventListener('click', () => {
+        console.log(currentProject);
         // console.log(newTaskName.value);
         // console.log(newTaskDueDate.value);
         // console.log(currentProject.id);
@@ -89,14 +90,18 @@ export default function projectTasks(currentProject) {
             due: newTaskDueDate.value
         };
 
-        const projects = [];
-        for (let i = 0; i < localStorage.length; i++) {
-            const project = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            projects.push(project);
-        }
-        const projectIndex = projects.findIndex((project) => project.id === currentProject.id);
-        projects[projectIndex].tasks.push(newTask);
+        const projects = getProjects();
         localStorage.clear();
+        const findTargetProject = () => {
+            for (let i = 0; i < projects.length; i++) {
+                if (projects[i].id === currentProject.id) {
+                    return projects[i];
+                }
+            }
+        }
+        const targetProject = findTargetProject();
+        targetProject.tasks.push(newTask);
+        
         for (let i = 0; i < projects.length; i++) {
             localStorage.setItem(projects[i].name, JSON.stringify(projects[i]));
         }
